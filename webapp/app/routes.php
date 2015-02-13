@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', function()
+/*
+ * Homepage
+ */
+Route::get('/', array('as' => 'home', function() 
 {
-	return View::make('hello');
-});
+	return View::make('home');
+}));

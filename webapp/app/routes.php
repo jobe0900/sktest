@@ -47,3 +47,21 @@ Route::post('login', array('before' => 'csrf', function()
 		->with('flash_error', 'Your email/password combination was incorrect.')
 		->withInput();
 }));
+
+/*
+ * Welcome message
+ */
+Route::get('welcome', array('as' => 'welcome', function()
+{
+	return View::make('welcome');
+}));
+
+/*
+ * Filter logout, only logged in users can log out
+ */
+Route::get('logout', array('as' => 'logout', 'before' => 'auth', function() 
+{
+	Auth::logout();
+	return Redirect::route('home')
+		->with('flash_notice', 'You are successfully logged out');
+}));
